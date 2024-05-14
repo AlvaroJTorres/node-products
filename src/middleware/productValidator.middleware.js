@@ -10,9 +10,9 @@ const validateCreateProduct = [
     .notEmpty()
     .withMessage('Product title can not be empty!'),
   check('description')
+    .trim()
     .notEmpty()
-    .withMessage('Product description can not be empty!')
-    .isArray(),
+    .withMessage('Product description can not be empty!'),
   check('sku')
     .notEmpty()
     .withMessage('Product sku can not be empty!')
@@ -50,7 +50,7 @@ const validateUpdateProduct = [
 check('title')
   .trim(),
 check('description')
-  .isArray(),
+  .trim(),
 check('sku')
   .isLength({ min: 8, max: 12 }),
 check('grams')

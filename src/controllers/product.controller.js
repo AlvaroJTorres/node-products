@@ -25,7 +25,6 @@ const show = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    // add more fields for the h5 parts
     const { handle, title, description, sku, grams, stock, price, compare_price, barcode } = req.body
 
     const productBySkuExists = await db.Product.findOne({where: {sku}})
@@ -33,8 +32,7 @@ const create = async (req, res) => {
       return res.status(400).json({message: 'SKU already used for a different product'})
     }
     const htmlDescription = '<p><strong>Características:</strong></p>\r\n<ul>\r\n'
-    const formatedDescriptionList = description.map((el) => `<li>${el}</li>\r\n`).join('').concat('</ul>')
-    // add aditional description of h5
+    const formatedDescriptionList = description.split(' ').map((el) => `<li>${el}</li>\r\n`).join('').concat('</ul>')
     const formatedDescription = htmlDescription.concat(formatedDescriptionList)
 
     const newProduct = await db.Product.create({handle, title, description: formatedDescription, sku, grams, stock, price, compare_price, barcode})
@@ -57,7 +55,7 @@ const update = async (req, res) => {
 
     if(description) {
       const htmlDescription = '<p><strong>Características:</strong></p><ul>'
-      const formatedDescriptionList = description.map((el) => `<li>${el}</li>`).join('')
+      const formatedDescriptionList = description.split(' ').map((el) => `<li>${el}</li>`).join('')
       const formatedDescription = htmlDescription.concat(formatedDescriptionList).concat('</ul>')
       product.description = formatedDescription
       await product.save()
