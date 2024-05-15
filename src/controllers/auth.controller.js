@@ -28,14 +28,14 @@ const registerUser = async (req, res) => {
 
         const token = jwt.sign({ id: new_user.id }, secret, {
           expiresIn: expiration
-      });
+        });
 
-      res.status(200).json({data: {
-        id: user.id,
-        name: user.name,
-        username: user.username,
-        accessToken: token,
-    }});
+        res.status(200).json({data: {
+          id: new_user.id,
+          name: new_user.name,
+          username: new_user.username,
+          accessToken: token,
+        }});
     } catch (err) {
         return res.status(500).json({message:'Error in registering user'});
     }
@@ -57,8 +57,6 @@ const signInUser = async (req, res) => {
       const token = jwt.sign({ id: user.id }, secret, {
           expiresIn: expiration
       });
-
-    //   req.session.token = token;
  
       res.status(200).json({data: {
           id: user.id,
