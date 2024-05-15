@@ -14,6 +14,16 @@
 cd node-products
 npm install
 ```
+- Add a .env file in the project root with the required database information
+```
+PORT=8080
+DB_HOST='localhost'
+DB_DATABASE={define your db name}
+DB_USER={define user, default is postgres}
+DB_PASSWORD={define password, default is postgres}
+JWT_SECRET={define secret here}
+JWT_REFRESH_EXPIRATION='{define token duration here}
+```
 - This project has seeds from an excel file located in the public folder. To run the seed use
 ```
 npx sequelize-cli db:seed:all
