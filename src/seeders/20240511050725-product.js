@@ -5,7 +5,7 @@ var XLSX = require("xlsx");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    const workbook = XLSX.readFile('public/Productos prueba técnica.xlsx')
+    const workbook = XLSX.readFile('src/public/Productos prueba técnica.xlsx')
     const sheetName = workbook.SheetNames[0]
     const worksheet = workbook.Sheets[sheetName]
     let jsonData = XLSX.utils.sheet_to_json(worksheet)
