@@ -52,16 +52,22 @@ check('title')
 check('description')
   .trim(),
 check('sku')
+  .optional()
   .isLength({ min: 8, max: 12 }),
 check('grams')
+  .optional()
   .isInt(),
 check('stock')
+  .optional()
   .isInt(),
 check('price')
+  .optional()
   .isFloat(),
 check('compare_price')
+  .optional()
   .isFloat(),
 check('barcode')
+  .optional()
   .isLength({ min: 8, max: 13 }),
 (req, res, next) => {
     const errors = validationResult(req)
